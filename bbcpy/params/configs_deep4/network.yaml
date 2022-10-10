@@ -1,0 +1,80 @@
+default_net: &default
+  n_filters_time:
+    default: 40
+    help:
+  n_filters_spat:
+    default: 70
+    help:
+  filter_time_length:
+    default: 30
+    help:
+  pool_time_length:
+    default: 3
+    help:
+  pool_time_stride:
+    default: 5
+    help:
+  n_filters_2:
+    default: 25
+    help:
+  filter_length_2:
+    default: 30
+    help:
+  n_filters_3:
+    default: 80
+    help:
+  filter_length_3:
+    default: 30
+    help:
+  n_filters_4:
+    default: 180
+    help:
+  filter_length_4:
+    default: 20
+    help:
+  final_conv_length:
+    default: "auto"
+    help:
+  stride_before_pool:
+    default: false
+    help:
+  double_time_convs:
+    default: false
+    help:
+  split_first_layer:
+    default: true
+    help:
+  pool_mode:
+    default: "mean"
+    help:
+  batch_norm:
+    default: true
+    help:
+  drop_prob:
+    default: 0.5
+    help:
+  batch_norm_alpha:
+    default: 0.1
+    help:
+  momentum:
+    default: 0.1
+    help:
+  loss:
+    default: "BCELoss"
+    help: Name of the metric to calculate the loss. Can be any valid metric name from torch.torch*
+  load_model_from_checkpoint:
+    default: true
+    help:
+  model_path:
+    default: "/home/teip/BCI-PJ2021SS/runs/deep4_net_tunning/all_params_00/2021-10-12_06-58-03/checkpoints/best_model_1_trial_3_validation_acc=0.9579.pt"
+    help:
+
+best_net:
+  <<: *default
+  drop_prob: 0.5
+
+best_net_test:
+  <<: *default
+  load_model_from_checkpoint: true
+  model_path: "/home/teip/BCI-PJ2021SS/runs/deep4_net_tunning/all_params_00/2021-10-12_06-58-03/checkpoints/best_model_1_trial_3_validation_acc=0.9579.pt"
+  

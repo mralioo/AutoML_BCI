@@ -1,0 +1,89 @@
+train_pipeline:
+  experiment_name: EEGNet_v1
+  run_name: best_run_04
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_eegnet_v1/data.yaml::train_data
+  network:
+    imports:
+      - configs_eegnet_v1/network.yaml::best_net
+      - configs_eegnet_v1/optims.yaml::train
+  tunning:
+    imports:
+      - configs_eegnet_v1/tunning.yaml::train
+  logging:
+    imports:
+      - configs_eegnet_v1/logging.yaml::train
+
+tune_pipeline:
+  experiment_name: EEGNet_v1_tunning_intervall
+  run_name: intervall_2
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_eegnet_v1/data.yaml::tune_data
+  network:
+    imports:
+      - configs_eegnet_v1/network.yaml::default_net
+      - configs_eegnet_v1/optims.yaml::tune
+  tunning:
+    imports:
+      - configs_eegnet_v1/tunning.yaml::tune
+  logging:
+    imports:
+      - configs_eegnet_v1/logging.yaml::tune
+
+debug_pipeline:
+  experiment_name: EEGNet_v1_debug
+  run_name: debug_run_00
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_eegnet_v1/data.yaml::debug_data
+  network:
+    imports:
+      - configs_eegnet_v1/network.yaml::default_net
+      - configs_eegnet_v1/optims.yaml::default
+  tunning:
+    imports:
+      - configs_eegnet_v1/tunning.yaml::debug
+  logging:
+    imports:
+      - configs_eegnet_v1/logging.yaml::debug
+
+test_pipeline:
+  experiment_name: EEGNet_v1_test
+  run_name: EEGNet_v1_trial_63
+  pipeline_mode: TESTING
+  data:
+    imports:
+      - configs_eegnet_v1/data.yaml::test_data
+  network:
+    imports:
+      - configs_eegnet_v1/network.yaml::best_net
+      - configs_eegnet_v1/optims.yaml::default
+  tunning:
+    imports:
+      - configs_eegnet_v1/tunning.yaml::debug
+  logging:
+    imports:
+      - configs_eegnet_v1/logging.yaml::debug
+
+test_pipeline_2:
+  experiment_name: EEGNet_v1_test_2
+  run_name: EEGNet_v1_trial_14
+  pipeline_mode: TESTING
+  data:
+    imports:
+      - configs_eegnet_v1/data.yaml::test_data_1
+  network:
+    imports:
+      - configs_eegnet_v1/network.yaml::best_net
+      - configs_eegnet_v1/optims.yaml::default
+  tunning:
+    imports:
+      - configs_eegnet_v1/tunning.yaml::debug
+  logging:
+    imports:
+      - configs_eegnet_v1/logging.yaml::debug

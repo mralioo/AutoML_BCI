@@ -1,0 +1,58 @@
+default: &default
+  enable_optuna_tuner:
+    default: false
+    help:
+  metric:
+    default: "accuracy"
+    help:
+  n_trials:
+    default: 20
+    help:
+  timeout:
+    default: 600
+    help:
+  direction:
+    default: "maximize"
+    help:
+  sampler:
+    default: "TPESampler"
+    help:
+  seed:
+    default: 3435
+    help:
+  batch_size:
+    default: null
+    help:
+  optimizers:
+    default: null
+    help:
+  lrs:
+    default: null
+    help:
+  input_norm:
+    default: null
+    help:
+
+debug:
+  <<: *default
+  enable_optuna_tuner: true
+  n_trials: 5
+  timeout: 10
+  optimizers: [ "Adam", "RMSprop", "SGD" ]
+  lrs: [ 1e-5, 1e-1 ]
+#  batch_size: 32
+  input_norm: [ "std", "minmax" ]
+
+tune:
+  <<: *default
+  enable_optuna_tuner: true
+  n_trials: 100
+  timeout: null
+  optimizers: ["Adam", "RMSprop", "SGD"]
+  lrs: [1e-5, 1e-1]
+  batch_size : [32, 64, 128]
+  input_norm : ["std", "minmax"]
+
+train:
+  <<: *default
+  enable_optuna_tuner: false

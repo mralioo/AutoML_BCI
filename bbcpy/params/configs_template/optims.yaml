@@ -1,0 +1,31 @@
+default: &default
+  lr:
+    default: 1e-4
+    help: "Learning rate"
+  lr_decay:
+    default: true
+    help: "Learning rate decay"
+  gamma:
+    default: 0.975
+    help:
+  momentum:
+    default: 0.1
+    help: "The value used for the running_mean and running_var computation. Can be set to ``None`` for cumulative
+    moving average (i.e. simple average). Used when batch normalization is applied."
+  optim:
+    default: "Adam"
+    help: "Name of the optimizer. Can be any name that matches an optimizer from torch.optim*"
+  checkpoint_metric:
+    default: "accuracy"
+    help:
+  Earlystopping:
+    default: true
+    help:
+  patience:
+    default: 100
+    help:
+
+tune:
+  <<: *default
+  Earlystopping: false
+  lr_decay: false

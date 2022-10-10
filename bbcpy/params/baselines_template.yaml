@@ -1,0 +1,54 @@
+train_pipeline:
+  experiment_name: exp_test
+  run_name: run_1
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_template/data.yaml::default_data
+  network:
+    imports:
+      - configs_template/network.yaml::default_net
+      - configs_template/optims.yaml::default
+  tunning:
+    imports:
+      - configs_template/tunning.yaml::default
+  logging:
+    imports:
+      - configs_template/logging.yaml::default
+
+
+debug_pipeline:
+  experiment_name: exp_debug
+  run_name: debug_run_00
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_template/data.yaml::debug_data
+  network:
+    imports:
+      - configs_template/network.yaml::default_net
+      - configs_template/optims.yaml::default
+  tunning:
+    imports:
+      - configs_template/tunning.yaml::debug
+  logging:
+    imports:
+      - configs_template/logging.yaml::default
+
+tune_pipeline:
+  experiment_name: exp_tune
+  run_name: tune_run_00
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_template/data.yaml::debug_data
+  network:
+    imports:
+      - configs_template/network.yaml::default_net
+      - configs_template/optims.yaml::default
+  tunning:
+    imports:
+      - configs_template/tunning.yaml::debug
+  logging:
+    imports:
+      - configs_template/logging.yaml::default

@@ -1,0 +1,36 @@
+default: &default
+  log_dir:
+    default: ''
+    help: Use log_dir to directly define a log directory without any sub direcory as
+      it is for root_log_dir. The parameter log_dir takes presedence over root_log_dir.
+      If log_dir is defined, root_log_dir is ignored.
+  enable_Hparams_save:
+    default: true
+    help:
+  enable_Summary_save:
+    default: true
+    help:
+  enable_tabular_logger:
+    default: true
+    help:
+  enable_tensorboard_logger:
+    default: true
+    help: Enables experiment logging with a tensorboard (torchup.ignite.contrib.handlers.TensorboardLoger)
+  enable_Hparam_tensorboard_logger:
+    default: true
+    help:
+  enable_model_graph:
+    default: true
+    help:
+  enable_model_checkpointing:
+    default: true
+    help: Enables model checkpointing. Stores the last 2 best models in the log directory
+
+tune:
+  <<: *default
+  enable_model_checkpointing: true
+  enable_Hparam_tensorboard_logger: false
+
+debug:
+  <<: *default
+  enable_model_checkpointing: true

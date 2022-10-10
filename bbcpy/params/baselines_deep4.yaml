@@ -1,0 +1,71 @@
+train_pipeline:
+  experiment_name: deep4_net
+  run_name: all_data
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_deep4/data.yaml::default_data
+  network:
+    imports:
+      - configs_deep4/network.yaml::default_net
+      - configs_deep4/optims.yaml::default
+  tunning:
+    imports:
+      - configs_deep4/tunning.yaml::default
+  logging:
+    imports:
+      - configs_deep4/logging.yaml::default
+
+tune_pipeline:
+  experiment_name: deep4_net_tunning
+  run_name: all_params_00
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_deep4/data.yaml::tune_data
+  network:
+    imports:
+      - configs_deep4/network.yaml::default_net
+      - configs_deep4/optims.yaml::tune
+  tunning:
+    imports:
+      - configs_deep4/tunning.yaml::tune
+  logging:
+    imports:
+      - configs_deep4/logging.yaml::tune
+
+debug_pipeline:
+  experiment_name: deep4_debug
+  run_name: debug_run_00
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_deep4/data.yaml::debug_data
+  network:
+    imports:
+      - configs_deep4/network.yaml::default_net
+      - configs_deep4/optims.yaml::default
+  tunning:
+    imports:
+      - configs_deep4/tunning.yaml::debug
+  logging:
+    imports:
+      - configs_deep4/logging.yaml::debug
+
+test_pipeline:
+  experiment_name: deep4_test
+  run_name: run_1
+  pipeline_mode: TESTING
+  data:
+    imports:
+      - configs_deep4/data.yaml::test_data
+  network:
+    imports:
+      - configs_deep4/network.yaml::best_net_test
+      - configs_deep4/optims.yaml::default
+  tunning:
+    imports:
+      - configs_deep4/tunning.yaml::default
+  logging:
+    imports:
+      - configs_deep4/logging.yaml::test

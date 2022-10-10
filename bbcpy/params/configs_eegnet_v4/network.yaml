@@ -1,0 +1,59 @@
+default_net: &default
+  final_conv_length:
+    default: "auto"
+    help:
+  pool_mode:
+    default: "mean"
+    help:
+  F1:
+    default: 10
+    help:
+  D:
+    default: 4
+    help:
+  F2:
+    default: 16
+    help:
+  kernel_length:
+    default: 64
+    help:
+  third_kernel_size:
+    default: [ 10, 6 ]
+    help:
+  drop_prob:
+    default: 0.1
+    help:
+  momentum:
+    default: 0.1
+    help:
+  load_model_from_checkpoint:
+    default: false
+    help:
+  model_path:
+    default: null
+    help:
+
+best_net: &best_net
+  <<: *default
+  F1: 18
+  D: 6
+  F2: 14
+  kernel_length: 70
+  third_kernel_size: [ 6, 4 ]
+  drop_prob: 0.19
+  pool_mode: "mean"
+
+best_net_1: &best_net_1
+  <<: *default
+  F1: 18
+  D: 6
+  F2: 14
+  kernel_length: 70
+  third_kernel_size: [ 6, 4 ]
+  drop_prob: 0.19
+  pool_mode: "mean"
+
+best_net_test:
+  <<: *best_net_1
+  load_model_from_checkpoint: true
+  model_path: "/home/bbci/data/teaching/BCI-PJ2021SS/results/eegnet_v4/EEGNet_v4_tunning/all_params_02/2021-10-03_15-54-19/checkpoints/best_model_1_trial_32_validation_acc=0.9825.pt"

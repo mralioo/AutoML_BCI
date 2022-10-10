@@ -1,0 +1,12 @@
+default_net: &default
+  momentum:
+    default: 0.1
+    help:
+  loss:
+    default: "BCELoss"
+    help: Name of the metric to calculate the loss. Can be any valid metric name from torch.torch*
+
+
+best_net:
+  <<: *default
+  momentum: 0.01

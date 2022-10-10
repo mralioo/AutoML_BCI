@@ -1,0 +1,51 @@
+default: &default
+  lr:
+    default: 0.05
+    help: "Learning rate"
+  lr_decay:
+    default: true
+    help: "Learning rate decay"
+  gamma:
+    default: 0.975
+    help:
+  momentum:
+    default: null
+    help: "The value used for the running_mean and running_var computation. Can be set to ``None`` for cumulative
+    moving average (i.e. simple average). Used when batch normalization is applied."
+  optim:
+    default: "SGD"
+    help: "Name of the optimizer. Can be any name that matches an optimizer from torch.optim*"
+  checkpoint_metric:
+    default: "accuracy"
+    help:
+  loss:
+    default: "BCELoss"
+    help: Name of the metric to calculate the loss. Can be any valid metric name from torch.torch*
+  train_metrics_name:
+    default: [ "BCELoss", "accuracy", "precision", "recall", "F1", "cm" ]
+    help:
+  eval_metrics_name:
+    default: [ "BCELoss", "accuracy", "precision", "recall", "F1" ,"cm"]
+    help:
+  test_metrics_name:
+    default: [ "BCELoss", "accuracy", "precision", "recall", "F1", "cm" ]
+    help:
+  Earlystopping:
+    default: true
+    help:
+  patience:
+    default: 100
+    help:
+
+tune:
+  <<: *default
+  Earlystopping: false
+  lr_decay: false
+
+train:
+  <<: *default
+  Earlystopping: true
+  lr_decay: true
+  lr: 0.1
+  gamma: 0.975
+  optim: "SGD"

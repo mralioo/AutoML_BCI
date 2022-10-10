@@ -1,0 +1,59 @@
+default_net: &default
+  pool_mode:
+    default: "mean"
+    help:
+  split_first_layer:
+    default: false
+    help:
+  batch_norm:
+    default: true
+    help:
+  drop_prob:
+    default: 0.5
+    help:
+  batch_norm_alpha:
+    default: 0.1
+    help:
+  n_filters_time:
+    default: 32
+    help:
+  filter_time_length:
+    default: 70
+    help:
+  n_filters_spat:
+    default: 32
+    help:
+  pool_time_length:
+    default: 15
+    help:
+  pool_time_stride:
+    default: 30
+    help:
+  final_conv_length:
+    default: "auto"
+    help:
+  loss:
+    default: "BCELoss"
+    help: Name of the metric to calculate the loss. Can be any valid metric name from torch.torch*
+  load_model_from_checkpoint:
+    default: false
+    help:
+  model_path:
+    default: null
+    help:
+
+best_net_26: &best_net
+  <<: *default
+  batch_norm: true
+  drop_prob: 0.10764970247279382
+  batch_norm_alpha: 0.9154121627636327
+  n_filters_time: 30
+  filter_time_length: 100
+  n_filters_spat: 20
+  pool_time_length: 50
+  pool_time_stride: 45
+
+best_net_test:
+  <<: *best_net
+  load_model_from_checkpoint: true
+  model_path: "/home/bbci/data/teaching/BCI-PJ2021SS/results/shallow_net_tunning/all_params_01/2021-10-01_17-18-43/checkpoints/best_model_1_trial_26_validation_acc=0.9775.pt"

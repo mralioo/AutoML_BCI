@@ -1,0 +1,71 @@
+default_data: &default
+  data_path:
+    default: null
+    help: "Set null to run locally on your machine (data is located in data folder outside the project folder by 1 level),
+    otherwise set the global path"
+ subjects_list:
+    default: [ 1,2,3 ]
+    help:
+  sessions_list:
+    default: [ [1,3,6,9,10] , [1,3,5,8,10], [1,3,5,6,7] ]
+    help:
+  task_type:
+    default: "LR"
+    help:
+  time_interval:
+    default: [ 2000, 8000 ]
+    help:
+  merge_sessions:
+    default: True
+    help:
+  norm_type:
+    default: "std"
+    help:
+  norm_axis:
+    default: 0
+    help:
+  reshape_axes:
+    default: null
+    help: "it must be a tuple or list which contains a permutation of [0,1,..,N-1] to perform reshaping (see numpy.transpose).
+    null means keeping the same shape."
+  device:
+    default: "cuda"
+    help:
+  non_blocking:
+    default: true
+    help: Non-blocking property to speed up data loading
+  enable_testing:
+    default: False
+    help:
+  test_subjects_list:
+    default: [ 1 ]
+    help:
+  test_sessions_list:
+    default: [ [ 1,2,3 ] ]
+    help:
+  train_dev_test_split:
+    default: [ 0.8, 0.2, 0.0 ]
+    help:
+  num_epochs:
+    default: 1000
+    help: Number of epochs
+  max_training_time:
+    default: 0
+    help: Maximum training time in hours. Disabled by default (default=0)
+  seed:
+    default: 1234
+    help: Seed applied to all random generators
+  batch_size:
+    default: 64
+    help: Size of the training batch
+
+debug_data:
+  <<: *default
+  data_path: null
+  subjects_list: [ 1 ]
+  sessions_list: [ [ 1, 2 ] ]
+  num_epochs: 10
+
+tune_data:
+  <<: *default
+  num_epochs: 100

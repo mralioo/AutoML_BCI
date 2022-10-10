@@ -1,0 +1,47 @@
+default_net: &default
+  final_conv_length:
+    default: "auto"
+    help:
+  pool_mode:
+    default: "max"
+    help:
+  second_kernel_size:
+    default: [ 8, 6 ]
+    help:
+  third_kernel_size:
+    default: [ 8, 4 ]
+    help:
+  drop_prob:
+    default: 0.0587
+    help:
+  loss:
+    default: "BCELoss"
+    help: Name of the metric to calculate the loss. Can be any valid metric name from torch.torch*
+  load_model_from_checkpoint:
+    default: false
+    help:
+  model_path:
+    default: null
+    help:
+
+best_net: &best_net
+  <<: *default
+  second_kernel_size: [ 8, 6 ]
+  third_kernel_size: [ 8, 4 ]
+  drop_prob: 0.0587
+  load_model_from_checkpoint: true
+  model_path: "/home/bbci/data/teaching/BCI-PJ2021SS/results/EEGNet_v1_tunning/all_params_01/2021-10-02_01-15-38/checkpoints/best_model_1_trial_63_validation_acc=0.9712.pt"
+
+best_net_2: &best_net
+  <<: *default
+  second_kernel_size: [ 6, 4 ]
+  third_kernel_size: [ 8, 4 ]
+  drop_prob: 0.02805
+  load_model_from_checkpoint: true
+  model_path: "/home/bbci/data/teaching/BCI-PJ2021SS/results/
+
+
+#best_net_test:
+#  <<: *default
+#  load_model_from_checkpoint: true
+#  model_path: "/media/alioo_2/database/backup_LTS20/ss21/PJ_BCI/code/results_ida/EEGNet_v1_tunning/all_params_01/2021-10-02_01-15-38/checkpoints/best_model_1_trial_63_validation_acc=0.9712.pt"

@@ -1,0 +1,71 @@
+train_pipeline:
+  experiment_name: shallow_net_best
+  run_name: best_run_04
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_shallow/data.yaml::train_data
+  network:
+    imports:
+      - configs_shallow/network.yaml::best_net
+      - configs_shallow/optims.yaml::train
+  tunning:
+    imports:
+      - configs_shallow/tunning.yaml::train
+  logging:
+    imports:
+      - configs_shallow/logging.yaml::train
+
+tune_pipeline:
+  experiment_name: shallow_net_tunning_2
+  run_name: intervall_2
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_shallow/data.yaml::tune_data
+  network:
+    imports:
+      - configs_shallow/network.yaml::default_net
+      - configs_shallow/optims.yaml::tune
+  tunning:
+    imports:
+      - configs_shallow/tunning.yaml::tune
+  logging:
+    imports:
+      - configs_shallow/logging.yaml::tune
+
+debug_pipeline:
+  experiment_name: exp_debug
+  run_name: debug_run_00
+  pipeline_mode: TRAINING
+  data:
+    imports:
+      - configs_shallow/data.yaml::debug_data
+  network:
+    imports:
+      - configs_shallow/network.yaml::default_net
+      - configs_shallow/optims.yaml::train
+  tunning:
+    imports:
+      - configs_shallow/tunning.yaml::debug
+  logging:
+    imports:
+      - configs_shallow/logging.yaml::debug
+
+test_pipeline:
+  experiment_name: testing_shallow
+  run_name: test_26
+  pipeline_mode: TESTING
+  data:
+    imports:
+      - configs_shallow/data.yaml::test_data
+  network:
+    imports:
+      - configs_shallow/network.yaml::best_net_26
+      - configs_shallow/optims.yaml::default
+  tunning:
+    imports:
+      - configs_shallow/tunning.yaml::tune
+  logging:
+    imports:
+      - configs_shallow/logging.yaml::debug
